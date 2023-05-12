@@ -1,6 +1,6 @@
 deployment:
   replicaCount: 1
-  image: careem785/webapp_11-5-23
+  image: careem785/webapp_12-5-23
 resources:
   requests:
     cpu: "250m"
