@@ -1,7 +1,7 @@
 pipeline{
     agent {
      kubernetes {
-      label "kubernetesdev "
+      cloud 'kubernetesdev'
       yaml '''
         apiVersion: v1
         kind: Pod
@@ -22,7 +22,7 @@ pipeline{
     stages {     
       stage('Helm Chart'){
         steps{
-          container('build-agent'){
+          container('dev-agent'){
               dir('charts') {
                 withCredentials([usernamePassword(credentialsId: 'jfrog', usernameVariable: 'username', passwordVariable: 'password')]) {
                       sh '/usr/local/bin/helm repo add dptweb-helm-local  https://kubekrm.jfrog.io/artifactory/dpthelm-helm-local --username $username --password $password'
