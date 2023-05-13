@@ -1,7 +1,7 @@
 pipeline{
     agent {
      kubernetes {
-      cloud 'kubernetesdev'
+      cloud 'kubernetesdev'{
       yaml '''
         apiVersion: v1
         kind: Pod
@@ -19,6 +19,7 @@ pipeline{
       '''
         }
     }
+  }
     stages {     
       stage('Helm Chart'){
         steps{
