@@ -6,12 +6,12 @@ pipeline{
         apiVersion: v1
         kind: Pod
         metadata:
-          name: dev-pod
+          name: mypod
           namespace: default
         spec:
           serviceAccount: jenkins-agent-sa
           containers:
-          - name: dev-agent
+          - name: build-agent
             image: careem785/jenkins-build-agent:2.0
             command: 
              - cat
@@ -23,7 +23,7 @@ pipeline{
     stages {     
       stage('Helm Chart'){
         steps{
-          container('dev-agent'){
+          container('build-agent'){
               dir('charts') {
                 withCredentials([usernamePassword(credentialsId: 'jfrog', usernameVariable: 'username', passwordVariable: 'password')]) {
                       sh '/usr/local/bin/helm repo add dptweb-helm-local  https://kubekrm.jfrog.io/artifactory/dpthelm-helm-local --username $username --password $password'
