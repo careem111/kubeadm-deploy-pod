@@ -1,16 +1,17 @@
 pipeline{
     agent {
-     kubernetesdev {
+     kubernetes {
+      label "kubernetesdev "
       yaml '''
         apiVersion: v1
         kind: Pod
         metadata:
-          name: mypod
+          name: dev-pod
           namespace: default
         spec:
           serviceAccount: jenkins-agent-sa
           containers:
-          - name: build-agent
+          - name: dev-agent
             image: careem785/jenkins-build-agent:2.0
             command: 
              - cat
