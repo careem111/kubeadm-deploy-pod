@@ -1,6 +1,6 @@
 pipeline{
     agent {
-     kubernetes-dev {
+     kubernetesdev {
       yaml '''
         apiVersion: v1
         kind: Pod
